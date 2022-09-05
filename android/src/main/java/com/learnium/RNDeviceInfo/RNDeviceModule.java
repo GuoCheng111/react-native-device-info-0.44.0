@@ -147,18 +147,18 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
 
     String deviceName = "Unknown";
 
-    String permission = "android.permission.BLUETOOTH";
-    int res = this.reactContext.checkCallingOrSelfPermission(permission);
-    if (res == PackageManager.PERMISSION_GRANTED) {
-      try {
-        BluetoothAdapter myDevice = BluetoothAdapter.getDefaultAdapter();
-        if (myDevice != null) {
-          deviceName = myDevice.getName();
-        }
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
-    }
+//    String permission = "android.permission.BLUETOOTH";
+//    int res = this.reactContext.checkCallingOrSelfPermission(permission);
+//    if (res == PackageManager.PERMISSION_GRANTED) {
+//      try {
+//        BluetoothAdapter myDevice = BluetoothAdapter.getDefaultAdapter();
+//        if (myDevice != null) {
+//          deviceName = myDevice.getName();
+//        }
+//      } catch (Exception e) {
+//        e.printStackTrace();
+//      }
+//    }
 
 
 
@@ -169,45 +169,45 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
     // } catch (ClassNotFoundException e) {
     //   constants.put("instanceId", "N/A: Add com.google.android.gms:play-services-gcm to your project.");
     // }
-    constants.put("serialNumber", Build.SERIAL);
-    constants.put("deviceName", deviceName);
-    constants.put("systemName", "Android");
-    constants.put("systemVersion", Build.VERSION.RELEASE);
-    constants.put("model", Build.MODEL);
-    constants.put("brand", Build.BRAND);
-    constants.put("deviceId", Build.BOARD);
-    constants.put("apiLevel", Build.VERSION.SDK_INT);
-    constants.put("deviceLocale", this.getCurrentLanguage());
-    constants.put("deviceCountry", this.getCurrentCountry());
-    constants.put("uniqueId", Secure.getString(this.reactContext.getContentResolver(), Secure.ANDROID_ID));
-    constants.put("systemManufacturer", Build.MANUFACTURER);
-    constants.put("bundleId", packageName);
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-      try {
-        constants.put("userAgent", WebSettings.getDefaultUserAgent(this.reactContext));
-      } catch (RuntimeException e) {
-        constants.put("userAgent", System.getProperty("http.agent"));
-      }
-    }
-    constants.put("timezone", TimeZone.getDefault().getID());
-    constants.put("isEmulator", this.isEmulator());
-    constants.put("isTablet", this.isTablet());
-    constants.put("is24Hour", this.is24Hour());
-    if (getCurrentActivity() != null &&
-          (getCurrentActivity().checkCallingOrSelfPermission(Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED ||
-            getCurrentActivity().checkCallingOrSelfPermission(Manifest.permission.READ_SMS) == PackageManager.PERMISSION_GRANTED ||
-            getCurrentActivity().checkCallingOrSelfPermission("android.permission.READ_PHONE_NUMBERS") == PackageManager.PERMISSION_GRANTED)) {
-        TelephonyManager telMgr = (TelephonyManager) this.reactContext.getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
-        constants.put("phoneNumber", telMgr.getLine1Number());
-    }
-    constants.put("carrier", this.getCarrier());
-
-    Runtime rt = Runtime.getRuntime();
-    constants.put("maxMemory", rt.maxMemory());
-    ActivityManager actMgr = (ActivityManager) this.reactContext.getSystemService(Context.ACTIVITY_SERVICE);
-    ActivityManager.MemoryInfo memInfo = new ActivityManager.MemoryInfo();
-    actMgr.getMemoryInfo(memInfo);
-    constants.put("totalMemory", memInfo.totalMem);
+//    constants.put("serialNumber", Build.SERIAL);
+//    constants.put("deviceName", deviceName);
+//    constants.put("systemName", "Android");
+//    constants.put("systemVersion", Build.VERSION.RELEASE);
+//    constants.put("model", Build.MODEL);
+//    constants.put("brand", Build.BRAND);
+//    constants.put("deviceId", Build.BOARD);
+//    constants.put("apiLevel", Build.VERSION.SDK_INT);
+//    constants.put("deviceLocale", this.getCurrentLanguage());
+//    constants.put("deviceCountry", this.getCurrentCountry());
+//    constants.put("uniqueId", Secure.getString(this.reactContext.getContentResolver(), Secure.ANDROID_ID));
+//    constants.put("systemManufacturer", Build.MANUFACTURER);
+//    constants.put("bundleId", packageName);
+//    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+//      try {
+//        constants.put("userAgent", WebSettings.getDefaultUserAgent(this.reactContext));
+//      } catch (RuntimeException e) {
+//        constants.put("userAgent", System.getProperty("http.agent"));
+//      }
+//    }
+//    constants.put("timezone", TimeZone.getDefault().getID());
+//    constants.put("isEmulator", this.isEmulator());
+//    constants.put("isTablet", this.isTablet());
+//    constants.put("is24Hour", this.is24Hour());
+//    if (getCurrentActivity() != null &&
+//          (getCurrentActivity().checkCallingOrSelfPermission(Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED ||
+//            getCurrentActivity().checkCallingOrSelfPermission(Manifest.permission.READ_SMS) == PackageManager.PERMISSION_GRANTED ||
+//            getCurrentActivity().checkCallingOrSelfPermission("android.permission.READ_PHONE_NUMBERS") == PackageManager.PERMISSION_GRANTED)) {
+//        TelephonyManager telMgr = (TelephonyManager) this.reactContext.getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
+//        constants.put("phoneNumber", telMgr.getLine1Number());
+//    }
+//    constants.put("carrier", this.getCarrier());
+//
+//    Runtime rt = Runtime.getRuntime();
+//    constants.put("maxMemory", rt.maxMemory());
+//    ActivityManager actMgr = (ActivityManager) this.reactContext.getSystemService(Context.ACTIVITY_SERVICE);
+//    ActivityManager.MemoryInfo memInfo = new ActivityManager.MemoryInfo();
+//    actMgr.getMemoryInfo(memInfo);
+//    constants.put("totalMemory", memInfo.totalMem);
 
     return constants;
   }
